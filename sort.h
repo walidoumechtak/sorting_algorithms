@@ -24,5 +24,6 @@ void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
+listint_t *add_dnodeint_end(listint_t **head, listint_t *new);
 
 #endif

@@ -1,30 +1,41 @@
 #include "sort.h"
 
 /**
-* list_size - calc the size of the list
-* @list: the head of the node
-* Return: the size
-*/
+ * insertion_sort_list - functiont that sort dll with insert sort algorithm
+ * @list: the head of the dll
+ */
 
-int	list_size(listint_t *list)
+void	insertion_sort_list(listint_t **list)
 {
-	int	i;
+	listint_t	*node;
+	listint_t	*temp;
 
-	i = 0;
-	while (list)
+	node = NULL;
+	temp = NULL;
+
+	if (!list || !*list || (*list)->next == NULL)
+		return;
+	node = *list;
+	node = node->next;
+	while (node)
 	{
-		i++;
-		list = list->next;
+		while (node->prev && node->n < (node->prev)->n)
+		{
+			temp = node;
+			if (node->next)
+				(node->next)->prev = temp->prev;
+			(node->prev)->next = temp->next;
+			node = node->prev;
+			temp->prev = node->prev;
+			temp->next = node;
+			if (node->prev)
+				(node->prev)->next = temp;
+			node->prev = temp;
+			if (temp->prev == NULL)
+				*list = temp;
+			print_list(*list);
+			node = node->prev;
+		}
+		node = node->next;
 	}
-	return (i);
-}
-
-/**
-* insertion_sort - sort a list using insertion sort
-* @list: the addr of the node
-*/
-
-void insertion_sort_list(listint_t **list)
-{
-	
 }
