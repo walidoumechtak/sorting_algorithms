@@ -5,9 +5,10 @@
  * @array: the array targeted
  * @low: the low index
  * @big: the big index
+ * Return: the index of element
  */
 
-void	devide(int *array, int low, int big)
+int	devide(int *array, int low, int big, int size)
 {
 	int	pivote;
 	int	j;
@@ -26,8 +27,13 @@ void	devide(int *array, int low, int big)
 			array[i] = array[j];
 			array[j] = temp;
 		}
+		j++;
 	}
-
+	temp = array[i + 1];
+	array[i + 1] = array[big];
+	array[big] = temp;
+	print_array(array, size);
+	return (i + 1);
 }
 
 /**
@@ -37,15 +43,15 @@ void	devide(int *array, int low, int big)
  * @big: the index of height element
  */
 
-void	quick(int *array, int low, int big)
+void	quick(int *array, int low, int big, int size)
 {
 	int	index_pi;
 
 	if (low < big)
 	{
-		index_pi = devide(array, low, big);
-		quick(array, low, index_pi - 1);
-		quick(array, pi + 1, big);
+		index_pi = devide(array, low, big, size);
+		quick(array, low, index_pi - 1, size);
+		quick(array, index_pi + 1, big, size);
 	}
 }
 
@@ -57,5 +63,5 @@ void	quick(int *array, int low, int big)
 
 void	quick_sort(int *array, size_t size)
 {
-	quick(array, 0, size - 1);
+	quick(array, 0, size - 1, size);
 }
