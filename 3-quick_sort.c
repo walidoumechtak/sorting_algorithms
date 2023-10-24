@@ -5,6 +5,7 @@
  * @array: the array targeted
  * @low: the low index
  * @big: the big index
+ * @size: the size of the array
  * Return: the index of element
  */
 
@@ -41,6 +42,7 @@ int	devide(int *array, int low, int big, int size)
  * @array: the array should be sorted
  * @low: the index of low element
  * @big: the index of height element
+ * @size: the size of the array
  */
 
 void	quick(int *array, int low, int big, int size)
