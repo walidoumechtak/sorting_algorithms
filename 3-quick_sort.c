@@ -16,6 +16,32 @@ int	devide(int *array, int low, int big, int size)
 	int	i;
 	int	temp;
 
+	pivote = array[low];
+	i = low;
+	j = big;
+	while (i < j)
+	{
+		do
+		{
+			i++;
+		}while (array[i] <= pivote);
+		do
+		{
+			j--;
+		}while (array[j] > pivote);
+		if (i < j)
+		{
+			temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+			print_array(array, size);
+		}
+	}
+	temp = array[low];
+	array[low] = array[j];
+	array[j] = temp;
+	return (j);
+	/*
 	pivote = array[big];
 	j = low;
 	i = low - 1;
@@ -35,6 +61,7 @@ int	devide(int *array, int low, int big, int size)
 	array[big] = temp;
 	print_array(array, size);
 	return (i + 1);
+	*/
 }
 
 /**
@@ -52,7 +79,7 @@ void	quick(int *array, int low, int big, int size)
 	if (low < big)
 	{
 		index_pi = devide(array, low, big, size);
-		quick(array, low, index_pi - 1, size);
+		quick(array, low, index_pi, size);
 		quick(array, index_pi + 1, big, size);
 	}
 }
